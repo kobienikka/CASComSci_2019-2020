@@ -12,6 +12,8 @@ class ViewController: UIViewController {
 
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var greetingLabel: UILabel!
+    @IBOutlet weak var greetingSwitch: UISwitch!
+    @IBOutlet weak var helloButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,8 +22,20 @@ class ViewController: UIViewController {
     }
 
     @IBAction func sayHello(_ sender: Any) {
-        greetingLabel.text = "Hello, \(nameTextField.text ?? "human")!"
+        let helloGreeting = greetingSwitch.isOn
+        if helloGreeting {
+            greetingLabel.text = "Hola, \(nameTextField.text ?? "human")!"
+        } else {
+            greetingLabel.text = "Adios, \(nameTextField.text ?? "human")!"
+        }
     }
     
+    @IBAction func toggleSwitch(_ sender: UISwitch) {
+        let hello = sender.isOn
+        if hello {
+            helloButton.setTitle("Say Hello", for: .normal)
+        } else {
+            helloButton.setTitle("Say Goodbye", for: .normal)
+        }
+    }
 }
-
